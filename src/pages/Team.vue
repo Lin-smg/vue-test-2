@@ -134,7 +134,6 @@ const country = ref("")
 
 function saveTeam() {
 
-    console.log("team", team.value)
     if (isEdit.value) {
         teamStore.updateTeam(team.value)
 
@@ -142,7 +141,7 @@ function saveTeam() {
         teamStore.saveTeam(team.value)
 
     }
-    console.log("res", teamStore.error)
+    
     if (!teamStore.error) {
         showModal.value = false;
         team.value = {
@@ -162,7 +161,7 @@ function showAddModal() {
     }
     showModal.value = true;
     teamStore.clearError();
-    console.log("show", team.value)
+    
 
 }
 
@@ -175,7 +174,7 @@ function deleteTeam(team) {
 function showEditModal(value, id) {
     isEdit.value = true;
     team.value = { ...value, index: id }
-    console.log("value", team.value)
+    
 
     showModal.value = true
 }
@@ -197,7 +196,7 @@ function addPlayers() {
 
     playerStore.setTeam(players.value, team.value)
     team.value.playerCount = team.value.playerCount + players.value.length
-    console.log("team", team.value);
+    
 
     teamStore.updateTeam(team.value)
 
@@ -208,6 +207,6 @@ function addPlayers() {
 function showPlayerList(value) {
     team.value = { ...value }
     playerListModal.value = true;
-    console.log("player lisst", playerStore.getPlayerListByTeam(team.value))
+    
 }
 </script>

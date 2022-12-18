@@ -133,7 +133,6 @@ const playerHeight = computed(() => {
 onMounted(() => {
 
     getPlayerList();
-    console.log("modal", showModal.value)
 
     // window.onscroll = () => {
     //     let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
@@ -150,9 +149,6 @@ onMounted(() => {
 const getPlayerList = async () => {
     loading.value = true;
 
-    // playerList.value = await playerStore.getAllPlayer;
-    // console.log("player list", playerList.value)
-    // loading.value = false
     http({
         url: 'players',
         method: 'GET',
@@ -161,7 +157,7 @@ const getPlayerList = async () => {
             per_page: 10
         }
     }).then(res => {
-        console.log(res)
+        
         playerList.value.push(...res.data.data)
         loading.value = false
     })
@@ -174,16 +170,12 @@ const showTeam = (value) => {
 
 function scroll() {
     window.onscroll = () => {
-        // console.log('scroll',window.innerHeight + window.pageYOffset , document.body.offsetHeight)
-
         let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-
-        // console.log("----", document.documentElement.scrollTop + window.innerHeight, document.documentElement.offsetHeight)
 
         if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 1) {
 
             page.value++;
-            console.log('start', page.value)
+            
             getPlayerList();
         }
     }

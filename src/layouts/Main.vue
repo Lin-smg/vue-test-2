@@ -4,9 +4,13 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-info p-2">
                 <a class="navbar-brand " href="#">Balldontlie</a>
                 <RouterLink to="/">Player</RouterLink>
-                <RouterLink class="ms-2 " to="/team">Team</RouterLink>
+                <RouterLink class="ms-2" to="/team">Team</RouterLink>
 
-                <span class="navbar-text ms-auto">
+                <span class="me-auto ms-auto">
+                    {{route.name}}
+                </span>
+
+                <span class="navbar-text ">
                     {{store.getUserName}}
                 </span>
                 <button class="btn btn-outline-danger ms-2" @click="logout">Logout</button>
@@ -43,17 +47,17 @@
 
 <script setup>
 import { ref } from 'vue';
-import { RouterView , useRouter, RouterLink} from 'vue-router';
+import { RouterView , useRouter, RouterLink, useRoute} from 'vue-router';
 import { useAuthStore } from '../store/auth';
 import { useTeamStore } from '../store/team';
 import { usePlayerStore } from '../store/player';
 
 const store = useAuthStore();
 const router = useRouter();
+const route = useRoute();
 const showModal = ref(false);
 const teamStore = useTeamStore();
 const playerStore = usePlayerStore();
-
 
 function logout() {
     store.logout();

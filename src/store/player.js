@@ -13,7 +13,6 @@ export const usePlayerStore = defineStore('player', {
         getPlayerList: (state) => {
             return state.playerList.filter((item) => {
 
-                console.log("item", item.team_id);
                 return !(item.team_id)
             });
         },
@@ -36,10 +35,10 @@ export const usePlayerStore = defineStore('player', {
                 url: 'players',
                 method: 'GET',
             }).then(res => {
-                console.log(res)
+                
                 this.playerList = localStorage.getItem('players')? JSON.parse(localStorage.getItem('players')):res.data.data
                 this.loading = false
-                console.log("----------------", !localStorage.getItem('players'))
+                
                 if(!localStorage.getItem('players')) {
                     this.storePlayerToStorage(this.playerList)
 

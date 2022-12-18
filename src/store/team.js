@@ -50,7 +50,7 @@ export const useTeamStore = defineStore('team', {
             const playerStore = usePlayerStore()
             playerStore.leaveTeam(team);
             this.teamList = this.teamList.filter(item => {
-                console.log("delete", item.id , team.id)
+                
                 return item.id != team.id
             })
             this.storeTeamToStorage(this.teamList)
@@ -58,7 +58,6 @@ export const useTeamStore = defineStore('team', {
 
         updateTeam(team) {
             let index = team.index
-            console.log("INdes", index)
             delete team.index;
             this.teamList[index] = team;
 

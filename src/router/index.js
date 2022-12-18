@@ -8,12 +8,12 @@ const routes = [
     },
     {
         path: "/",
-        name: "Home",
+        name: "Player",
         component: () => import('../layouts/Main.vue'),
         children: [
             {
                 path: "/",
-                name: "Home",
+                name: "Player",
                 component: () => import('../pages/Home.vue')
             },
             {

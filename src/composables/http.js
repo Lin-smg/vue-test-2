@@ -12,15 +12,12 @@ export const http = ({method, url, params=null}) => {
                 params: params
             })
                 .then(res => {
-                    console.log("success", res)
                     resolve(res)
                 })
                 .catch(err => {
-                    console.log("error", err)
                     reject(err)
                 });
         } catch (error) {
-            console.log("errror", error);
             reject("error");
         }
     });
