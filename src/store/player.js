@@ -75,6 +75,10 @@ export const usePlayerStore = defineStore('player', {
             })
 
             this.storePlayerToStorage(this.playerList)
+        },
+
+        clearPlayer() {
+            this.playerList = []
         }
 
     },
