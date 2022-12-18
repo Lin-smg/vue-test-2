@@ -4,7 +4,7 @@ import { usePlayerStore } from './player';
 
 export const useTeamStore = defineStore('team', {
     state: () => ({ 
-        teamList: [],
+        teamList: localStorage.getItem('teams') ? JSON.parse(localStorage.getItem('teams')) : [],
         loading: false,
         error: null
      }),
@@ -15,7 +15,7 @@ export const useTeamStore = defineStore('team', {
             const playerStore = usePlayerStore()
             return state.teamList.map(team => {
                 team.playerCount = playerStore.getAllPlayer.filter(data => {
-                    return data.team_name && data.team_name == team.name
+                    return data.team_id && data.team_id == team.id
                 }).length
                 return team
             })
@@ -23,14 +23,23 @@ export const useTeamStore = defineStore('team', {
         
     },
     actions: {
+        storeTeamToStorage(list) {
+            localStorage.setItem('teams', JSON.stringify(list))
+        },
         saveTeam(value) {
+
             let some = this.teamList.some(team => team.name == value.name)
+            this.error = ""
             if(some) {
                 this.error = "Team name already exist"
                 return;
             }
             value.playerCount = 0
+            let index = this.teamList.length + 1;
+            value.id = index;
             this.teamList.push(value)
+
+            this.storeTeamToStorage(this.teamList)
         },
 
         clearError() {
@@ -41,9 +50,10 @@ export const useTeamStore = defineStore('team', {
             const playerStore = usePlayerStore()
             playerStore.leaveTeam(team);
             this.teamList = this.teamList.filter(item => {
-                console.log("delete", item.name , team.name)
-                return item.name != team.name
+                console.log("delete", item.id , team.id)
+                return item.id != team.id
             })
+            this.storeTeamToStorage(this.teamList)
         },
 
         updateTeam(team) {
@@ -51,6 +61,9 @@ export const useTeamStore = defineStore('team', {
             console.log("INdes", index)
             delete team.index;
             this.teamList[index] = team;
+
+
+            this.storeTeamToStorage(this.teamList)
         }
     },
 })

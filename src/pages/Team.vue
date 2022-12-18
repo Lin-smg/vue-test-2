@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="text-start">
+        <div class="text-start mt-1">
             <button class="btn btn-primary" @click="showAddModal">Add Team</button>
         </div>
         <table class="table table-striped">
@@ -25,8 +25,8 @@
                     <td>{{ team.country }}</td>
                     <td>
                         <button class="btn btn-primary btn-sm" @click="showEditModal(team, i)">Edit</button>
-                        <button class="btn btn-danger btn-sm" @click="deleteTeam(team)">Delete</button>
-                        <button class="btn btn-primary btn-sm" @click="showAddPlayerModal(team, i)">Add Player</button>
+                        <button class="btn btn-danger btn-sm ms-1" @click="deleteTeam(team)">Delete</button>
+                        <button class="btn btn-primary btn-sm ms-1" @click="showAddPlayerModal(team, i)">Add Player</button>
                     </td>
                 </tr>
             </tbody>
@@ -34,7 +34,7 @@
 
         <Modal :show-modal="showModal" title="Add Team" @close="showModal = false">
             <form @submit.prevent="saveTeam">
-                <div>
+                <div class="text-danger">
                     {{ teamStore.error }}
                 </div>
                 <div class="form-group text-start">

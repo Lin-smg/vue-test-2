@@ -16,7 +16,7 @@
                                     <div class="col text-start">
                                         {{ player.first_name }} {{ player.last_name }}
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         {{ player.position }}
                                     </div>
                                     <div v-if="player.team" class="col text-end">{{ player.team.full_name }}({{ player.team.abbreviation
