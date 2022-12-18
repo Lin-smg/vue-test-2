@@ -64,6 +64,10 @@ export const useTeamStore = defineStore('team', {
 
 
             this.storeTeamToStorage(this.teamList)
+        },
+
+        clearTeam() {
+            this.teamList = []
         }
     },
 })

@@ -45,14 +45,17 @@
 import { ref } from 'vue';
 import { RouterView , useRouter, RouterLink} from 'vue-router';
 import { useAuthStore } from '../store/auth';
+import { useTeamStore } from '../store/team';
 
 const store = useAuthStore();
 const router = useRouter();
 const showModal = ref(false);
+const teamStore = useTeamStore();
 
 
 function logout() {
     store.logout();
+    teamStore.clearTeam();
     router.replace('/login')
 
 }
