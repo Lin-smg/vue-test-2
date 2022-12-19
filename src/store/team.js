@@ -35,7 +35,7 @@ export const useTeamStore = defineStore('team', {
                 return;
             }
             value.playerCount = 0
-            let index = this.teamList.length + 1;
+            let index = this.teamList.length == 0 ? 1 : +this.teamList[this.teamList.length-1].id + 1;
             value.id = index;
             this.teamList.push(value)
 
